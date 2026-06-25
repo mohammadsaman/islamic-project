@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ئایینی ئیسلام </title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #c8a84b;
+  --gold-light: #e8c97a;
+  --gold-pale: #f5e6b8;
+  --emerald: #1a6b4a;
+  --emerald-light: #2d9968;
+  --emerald-pale: #e8f5ee;
+  --ivory: #faf8f2;
+  --cream: #f2edd8;
+  --text-dark: #1a1208;
+  --text-mid: #4a3c1e;
+  --text-light: #8b7355;
+  --border: rgba(200, 168, 75, 0.3);
+  --shadow: 0 4px 30px rgba(26,107,74,0.1);
+  --radius: 12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Scheherazade New', 'Noto Naskh Arabic', serif;
+  background: var(--ivory);
+  color: var(--text-dark);
+  direction: rtl;
+  line-height: 1.8;
+}
+
+/* GEOMETRIC PATTERN */
+.geo-pattern {
+  background-color: var(--emerald);
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(200,168,75,0.08) 10px, rgba(200,168,75,0.08) 11px),
+    repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(200,168,75,0.08) 10px, rgba(200,168,75,0.08) 11px);
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(26,107,74,0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--gold);
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+}
+
+.nav-brand {
+  font-family: 'Amiri', serif;
+  font-size: 1.3rem;
+  color: var(--gold-light);
+  display: flex; align-items: center; gap: 0.6rem;
+  text-decoration: none;
+}
+
+.nav-brand span { font-size: 1.6rem; }
+
+.nav-links {
+  display: flex; gap: 0.3rem; list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Scheherazade New', serif;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.nav-links a:hover { color: var(--gold-light); background: rgba(200,168,75,0.15); }
+
+.lang-switcher {
+  display: flex; gap: 0.3rem;
+}
+
+.lang-btn {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid rgba(200,168,75,0.4);
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.lang-btn.active, .lang-btn:hover {
+  background: var(--gold);
+  color: var(--emerald);
+  border-color: var(--gold);
+  font-weight: bold;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 5rem 2rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(26,107,74,0.15), transparent),
+    linear-gradient(180deg, #fff8e8 0%, var(--ivory) 100%);
+}
+
+.hero-ornament {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(200,168,75,0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(26,107,74,0.08) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+.bismillah {
+  font-family: 'Amiri', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--emerald);
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 8px rgba(26,107,74,0.15);
+  opacity: 0;
+  animation: fadeDown 1s 0.2s forwards;
+}
+
+.bismillah-trans {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeDown 1s 0.4s forwards;
+}
+
+.hero-title {
+  font-family: 'Amiri', serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeDown 1s 0.6s forwards;
+}
+
+.hero-title span { color: var(--emerald); }
+
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--text-mid);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  opacity: 0;
+  animation: fadeDown 1s 0.8s forwards;
+}
+
+.hero-divider {
+  width: 80px; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 2rem;
+  opacity: 0;
+  animation: fadeIn 1s 1s forwards;
+}
+
+.hero-actions {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeDown 1s 1.1s forwards;
+}
+
+.btn {
+  font-family: 'Scheherazade New', serif;
+  font-size: 1rem;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: var(--emerald);
+  color: white;
+  border: 2px solid var(--emerald);
+  box-shadow: 0 4px 15px rgba(26,107,74,0.3);
+}
+
+.btn-primary:hover { background: var(--emerald-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,107,74,0.4); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--emerald);
+  border: 2px solid var(--gold);
+}
+
+.btn-outline:hover { background: var(--gold); color: white; transform: translateY(-2px); }
+
+/* SCROLL INDICATOR */
+.scroll-hint {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  color: var(--text-light); font-size: 0.75rem;
+  animation: bounce 2s infinite;
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: 5rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-full {
+  padding: 5rem 2rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.section-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  padding: 0.3rem 1rem;
+  background: rgba(26,107,74,0.1);
+  color: var(--emerald);
+  border: 1px solid rgba(26,107,74,0.2);
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Amiri', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--text-dark);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.section-title span { color: var(--emerald); }
+
+.section-divider {
+  width: 60px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0.75rem auto;
+}
+
+.section-desc {
+  color: var(--text-mid);
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
+/* ===== PILLARS CARD ===== */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pillar-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 1.2rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.pillar-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--emerald), var(--gold));
+}
+
+.pillar-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(26,107,74,0.15); }
+
+.pillar-num {
+  font-family: 'Amiri', serif;
+  font-size: 2.5rem;
+  color: var(--gold);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.pillar-icon { font-size: 2rem; margin: 0.5rem 0; }
+
+.pillar-name {
+  font-family: 'Amiri', serif;
+  font-size: 1.3rem;
+  color: var(--emerald);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.pillar-desc { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+
+/* ===== TIMELINE ===== */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  right: 20px; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--emerald), var(--gold));
+}
+
+.timeline-item {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  padding-right: 60px;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.6s;
+}
+
+.timeline-item.visible { opacity: 1; transform: translateX(0); }
+
+.timeline-dot {
+  position: absolute;
+  right: 12px; top: 8px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 3px solid white;
+  box-shadow: 0 0 0 3px var(--emerald);
+  flex-shrink: 0;
+}
+
+.timeline-year {
+  font-family: 'Amiri', serif;
+  font-size: 0.85rem;
+  color: var(--gold);
+  font-weight: 700;
+  white-space: nowrap;
+  margin-top: 0.2rem;
+  min-width: 80px;
+}
+
+.timeline-content {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.5rem;
+  box-shadow: var(--shadow);
+  flex: 1;
+}
+
+.timeline-content h4 {
+  font-family: 'Amiri', serif;
+  font-size: 1.2rem;
+  color: var(--emerald);
+  margin-bottom: 0.4rem;
+}
+
+.timeline-content p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; }
+
+/* ===== QURAN SECTION ===== */
+.quran-wrap {
+  background: linear-gradient(135deg, var(--emerald) 0%, #0d4a35 100%);
+  color: white;
+  border-radius: 16px;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.quran-wrap::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(60deg, transparent, transparent 20px, rgba(255,255,255,0.02) 20px, rgba(255,255,255,0.02) 21px),
+    repeating-linear-gradient(-60deg, transparent, transparent 20px, rgba(255,255,255,0.02) 20px, rgba(255,255,255,0.02) 21px);
+}
+
+.quran-content { position: relative; z-index: 1; }
+
+.surah-selector {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin-bottom: 2rem;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 1rem;
+  background: rgba(0,0,0,0.2);
+  border-radius: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) transparent;
+}
+
+.surah-btn {
+  font-family: 'Scheherazade New', serif;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.8rem;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.surah-btn:hover, .surah-btn.active {
+  background: var(--gold);
+  color: var(--emerald);
+  border-color: var(--gold);
+  font-weight: 600;
+}
+
+.ayah-display {
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(200,168,75,0.3);
+  border-radius: 12px;
+  padding: 2.5rem;
+  text-align: center;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ayah-arabic {
+  font-family: 'Amiri', serif;
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  line-height: 2;
+  color: var(--gold-light);
+}
+
+.ayah-translation {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.85);
+  font-style: italic;
+  max-width: 600px;
+  line-height: 1.8;
+}
+
+.ayah-ref {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  font-family: monospace;
+}
+
+.ayah-controls {
+  display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;
+}
+
+.ayah-btn {
+  font-family: 'Scheherazade New', serif;
+  padding: 0.6rem 1.5rem;
+  border: 1px solid rgba(200,168,75,0.5);
+  background: rgba(200,168,75,0.15);
+  color: var(--gold-light);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 0.95rem;
+}
+
+.ayah-btn:hover { background: var(--gold); color: var(--emerald); }
+
+/* ===== DHIKR SECTION ===== */
+.dhikr-tabs {
+  display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dhikr-tab {
+  font-family: 'Scheherazade New', serif;
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  border: 2px solid var(--border);
+  background: white;
+  color: var(--text-mid);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.dhikr-tab.active, .dhikr-tab:hover {
+  background: var(--emerald);
+  color: white;
+  border-color: var(--emerald);
+}
+
+.dhikr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.dhikr-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+  box-shadow: var(--shadow);
+  transition: all 0.3s;
+}
+
+.dhikr-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(26,107,74,0.12); }
+
+.dhikr-arabic {
+  font-family: 'Amiri', serif;
+  font-size: 1.6rem;
+  color: var(--emerald);
+  text-align: center;
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+  direction: rtl;
+}
+
+.dhikr-transliteration {
+  font-size: 0.85rem;
+  color: var(--gold);
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.dhikr-meaning {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.dhikr-count {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.7rem;
+  background: rgba(26,107,74,0.08);
+  color: var(--emerald);
+  border-radius: 20px;
+}
+
+/* ===== PRAYER TIMES ===== */
+.prayer-hero {
+  background: linear-gradient(135deg, #1a6b4a, #0d4a35);
+  color: white;
+  padding: 3rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.prayer-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(200,168,75,0.1), transparent 70%);
+}
+
+.current-time {
+  font-family: 'Amiri', serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  color: var(--gold-light);
+  position: relative;
+}
+
+.current-date { font-size: 1rem; color: rgba(255,255,255,0.7); margin-top: 0.3rem; }
+
+.city-search {
+  display: flex; gap: 0.75rem;
+  max-width: 500px;
+  margin: 1.5rem auto 0;
+  position: relative;
+}
+
+.city-input {
+  flex: 1;
+  font-family: 'Scheherazade New', serif;
+  font-size: 1rem;
+  padding: 0.75rem 1.2rem;
+  border: 2px solid rgba(200,168,75,0.4);
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.3s;
+  direction: rtl;
+}
+
+.city-input::placeholder { color: rgba(255,255,255,0.5); }
+.city-input:focus { border-color: var(--gold); }
+
+.city-btn {
+  font-family: 'Scheherazade New', serif;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--gold);
+  color: var(--emerald);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s;
+}
+
+.city-btn:hover { background: var(--gold-light); }
+
+.prayer-times-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.prayer-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: all 0.3s;
+  position: relative;
+}
+
+.prayer-card.next-prayer {
+  background: var(--emerald);
+  color: white;
+  border-color: var(--emerald);
+  transform: scale(1.05);
+}
+
+.prayer-card.next-prayer .prayer-time { color: var(--gold-light); }
+.prayer-card.next-prayer .prayer-name-ar { color: white; }
+.prayer-card.next-prayer .prayer-name-ku { color: rgba(255,255,255,0.8); }
+
+.prayer-badge {
+  position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--emerald);
+  font-size: 0.65rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.prayer-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.prayer-name-ar { font-family: 'Amiri', serif; font-size: 1.2rem; color: var(--emerald); font-weight: 700; }
+.prayer-name-ku { font-size: 0.8rem; color: var(--text-light); margin: 0.2rem 0; }
+.prayer-time { font-family: 'Courier New', monospace; font-size: 1.4rem; font-weight: 700; color: var(--text-dark); margin-top: 0.5rem; }
+
+/* ===== PROPHET SECTION ===== */
+.prophet-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  align-items: start;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.prophet-info-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 80px;
+}
+
+.prophet-card-header {
+  background: linear-gradient(135deg, var(--emerald), #0d4a35);
+  padding: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.prophet-title-ar {
+  font-family: 'Amiri', serif;
+  font-size: 1.8rem;
+  color: var(--gold-light);
+}
+
+.prophet-subtitle { font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 0.3rem; }
+
+.prophet-salawat {
+  font-family: 'Amiri', serif;
+  font-size: 1.1rem;
+  color: var(--gold-light);
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+.prophet-facts {
+  padding: 1.5rem;
+}
+
+.fact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(200,168,75,0.15);
+  font-size: 0.9rem;
+}
+
+.fact-row:last-child { border-bottom: none; }
+.fact-label { color: var(--text-light); }
+.fact-value { color: var(--text-dark); font-weight: 600; text-align: left; }
+
+.prophet-bio h3 {
+  font-family: 'Amiri', serif;
+  font-size: 1.5rem;
+  color: var(--emerald);
+  margin: 1.5rem 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.prophet-bio p {
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.9;
+  margin-bottom: 1rem;
+}
+
+/* ===== BECOMING MUSLIM ===== */
+.become-steps {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.step-card {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: all 0.4s;
+  align-items: flex-start;
+}
+
+.step-card:hover { transform: translateX(-6px); box-shadow: 0 8px 30px rgba(26,107,74,0.12); }
+
+.step-num-wrap {
+  width: 60px; height: 60px;
+  background: linear-gradient(135deg, var(--emerald), var(--emerald-light));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(26,107,74,0.3);
+}
+
+.step-num {
+  font-family: 'Amiri', serif;
+  font-size: 1.4rem;
+  color: white;
+  font-weight: 700;
+}
+
+.step-content h4 {
+  font-family: 'Amiri', serif;
+  font-size: 1.3rem;
+  color: var(--emerald);
+  margin-bottom: 0.5rem;
+}
+
+.step-content p { font-size: 0.92rem; color: var(--text-mid); line-height: 1.8; }
+
+.shahada-box {
+  background: linear-gradient(135deg, var(--emerald), #0d4a35);
+  border-radius: 16px;
+  padding: 3rem;
+  text-align: center;
+  color: white;
+  margin: 2rem 0;
+}
+
+.shahada-arabic {
+  font-family: 'Amiri', serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: var(--gold-light);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.shahada-trans {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.8;
+}
+
+/* ===== FIVE TIMES SALAH ===== */
+.salah-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.salah-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.salah-name-ar {
+  font-family: 'Amiri', serif;
+  font-size: 1.5rem;
+  color: var(--emerald);
+  margin-bottom: 0.3rem;
+}
+
+.salah-name-ku { font-size: 0.85rem; color: var(--text-light); margin-bottom: 0.75rem; }
+.salah-rakaat {
+  display: inline-block;
+  background: rgba(26,107,74,0.1);
+  color: var(--emerald);
+  border-radius: 20px;
+  padding: 0.2rem 0.8rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.75rem;
+}
+.salah-time { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; }
+
+/* ===== INFO BOXES ===== */
+.info-box {
+  background: var(--emerald-pale);
+  border: 1px solid rgba(26,107,74,0.2);
+  border-right: 4px solid var(--emerald);
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  font-size: 0.92rem;
+  color: var(--text-mid);
+  line-height: 1.8;
+}
+
+.info-box.gold {
+  background: rgba(200,168,75,0.08);
+  border-color: rgba(200,168,75,0.3);
+  border-right-color: var(--gold);
+}
+
+/* ===== HADITH SECTION ===== */
+.hadith-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hadith-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.hadith-card::before {
+  content: '❝';
+  position: absolute;
+  top: 1rem; right: 1.5rem;
+  font-size: 3rem;
+  color: rgba(200,168,75,0.2);
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+.hadith-arabic {
+  font-family: 'Amiri', serif;
+  font-size: 1.2rem;
+  color: var(--emerald);
+  line-height: 1.9;
+  margin-bottom: 0.75rem;
+  direction: rtl;
+}
+
+.hadith-translation { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; font-style: italic; }
+.hadith-source { font-size: 0.75rem; color: var(--gold); margin-top: 0.75rem; font-weight: 600; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--text-dark);
+  color: rgba(255,255,255,0.7);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: 'Amiri', serif;
+  font-size: 2rem;
+  color: var(--gold-light);
+  margin-bottom: 0.5rem;
+}
+
+.footer-verse {
+  font-family: 'Amiri', serif;
+  font-size: 1.1rem;
+  color: rgba(200,168,75,0.8);
+  margin: 1rem 0;
+  line-height: 1.8;
+}
+
+.footer-note { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 1.5rem; line-height: 1.7; }
+
+/* ===== BG SECTIONS ===== */
+.bg-cream { background: var(--cream); }
+.bg-emerald { background: linear-gradient(135deg, var(--emerald), #0d4a35); color: white; }
+.bg-white { background: white; }
+
+/* ===== REVEAL ===== */
+.reveal { opacity: 0; transform: translateY(24px); transition: all 0.7s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  nav { padding: 0 1rem; }
+  .nav-links { display: none; }
+  .section { padding: 3rem 1rem; }
+  .prophet-layout { grid-template-columns: 1fr; }
+  .prophet-info-card { position: static; }
+  .timeline::before { right: 8px; }
+  .timeline-item { padding-right: 40px; }
+  .step-card { flex-direction: column; gap: 1rem; }
+  .city-search { flex-direction: column; }
+  footer { padding: 2rem 1rem; }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+/* Tab content */
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* Language layers */
+.lang-ku, .lang-ar, .lang-en { display: none; }
+.lang-ku.show, .lang-ar.show, .lang-en.show { display: block; }
+.lang-ku.show-inline, .lang-ar.show-inline, .lang-en.show-inline { display: inline; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <span>☪</span>
+    <span id="nav-title">ئایینی ئیسلام</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#pillars" id="nav-pillars">پێنج پایەی ئیسلام</a></li>
+    <li><a href="#prophet" id="nav-prophet">پێغەمبەر ﷺ</a></li>
+    <li><a href="#history" id="nav-history">مێژوو</a></li>
+    <li><a href="#quran" id="nav-quran">قورئان</a></li>
+    <li><a href="#prayer" id="nav-prayer">کاتی بانگ</a></li>
+    <li><a href="#dhikr" id="nav-dhikr">زیکر</a></li>
+    <li><a href="#become" id="nav-become">بەرەو ئیسلام</a></li>
+  </ul>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('ku')">کوردی</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ornament"></div>
+  <div class="hero-content">
+    <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+    <div class="bismillah-trans" id="hero-bismillah-trans">بە ناوی خوای بەخشندە و میهرەبان</div>
+    <div class="hero-divider"></div>
+    <h1 class="hero-title" id="hero-title"><span>ئایینی پیرۆزی ئیسلام</span></h1>
+    <p class="hero-sub" id="hero-sub">ئیسلام دینی ئاشتی، سڵامەتی، و ئیمانەو — دینی هەموو مرۆڤایەتییە. ئێرە هەموو زانیاریەکانت دەدۆزیتەوە</p>
+    <div class="hero-actions">
+      <a href="#pillars" class="btn btn-primary" id="hero-btn1">دەستپێبکە </a>
+      <a href="#become" class="btn btn-outline" id="hero-btn2">بەرەو ئیسلام</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>↓</span>
+    <span id="scroll-label">زیاتر</span>
+  </div>
+</section>
+
+<!-- ===== PILLARS ===== -->
+<div class="section-full bg-cream" id="pillars">
+  <div class="section">
+    <div class="section-header reveal">
+      <div class="section-badge" id="badge-pillars">پێنج پایەی ئیسلام</div>
+      <h2 class="section-title" id="title-pillars">پێنج پایەی <span>ئیسلام</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-desc" id="desc-pillars">ئیسلام لەسەر پێنج پایەی بنەڕەتیی دامەزراوە کە هەر موسڵمانێک دەبێت بیانژێرێت</p>
+    </div>
+    <div class="pillars-grid reveal">
+      <div class="pillar-card">
+        <div class="pillar-num">١</div>
+        <div class="pillar-icon">🌙</div>
+        <div class="pillar-name" id="p1-name">شایەتومان</div>
+        <div class="pillar-desc" id="p1-desc">شایەتیدان بە یەکتاپەرستیی خودا و پێغەمبەرایەتیی حەزرەتی محەمەد ﷺ.</div>
+        <div class="dhikr-arabic" style="font-size:1rem;margin-top:0.7rem;color:var(--text-dark)">لا إِلٰهَ إِلَّا اللّٰهُ مُحَمَّدٌ رَّسُولُ اللّٰهِ</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">٢</div>
+        <div class="pillar-icon">🕌</div>
+        <div class="pillar-name" id="p2-name">نوێژ</div>
+        <div class="pillar-desc" id="p2-desc">نوێژکردنی پێنج جار لە ڕۆژدا — بەیانی ، نیوەڕۆ، عەسـر، شێوان، خەوتنان.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">٣</div>
+        <div class="pillar-icon">💛</div>
+        <div class="pillar-name" id="p3-name">زەکات</div>
+        <div class="pillar-desc" id="p3-desc">بەخشینی بەشێک لە سامان بۆ هەژاران — ٢.٥٪ لەو ماڵ و داراییەی کە ساڵێکی بەسەردا تێپەڕیوە.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">٤</div>
+        <div class="pillar-icon">🌙</div>
+        <div class="pillar-name" id="p4-name">ڕۆژوو</div>
+        <div class="pillar-desc" id="p4-desc">ڕۆژووگرتن لە مانگی ڕەمەزاندا — لە بەرەبەیانەوە (بانگی بەیانی) تا ئاوابوونی خۆر (بانگی شێوان).</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">٥</div>
+        <div class="pillar-icon">🕋</div>
+        <div class="pillar-name" id="p5-name">حەج</div>
+        <div class="pillar-desc" id="p5-desc">چوون بۆ مەکەی پیرۆز — جارێک لە ژیاندا، بۆ ئەو کەسەی کە توانای دارایی و جەستەیی هەبێت.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PROPHET ===== -->
+<div class="section-full bg-white" id="prophet">
+  <div class="section">
+    <div class="section-header reveal">
+      <div class="section-badge" id="badge-prophet">ژیانی پێغەمبەر</div>
+      <h2 class="section-title" id="title-prophet">حەزرەتی <span>محەمەد ﷺ</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-desc" id="desc-prophet">پێغەمبەری خودا ﷺ — دوا پێغەمبەری خودا لەسەر ڕووی زەوی</p>
+    </div>
+    <div class="prophet-layout reveal">
+      <div class="prophet-info-card">
+        <div class="prophet-card-header">
+          <div class="prophet-title-ar">النَّبِيُّ الكَرِيمُ</div>
+          <div class="prophet-subtitle" id="pc-sub">پێغەمبەری ڕەحمەت و بەزەیی</div>
+          <div class="prophet-salawat">صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ</div>
+        </div>
+        <div class="prophet-facts">
+          <div class="fact-row"><span class="fact-label" id="fl-birth">لەدایکبوون</span><span class="fact-value">٥٧١ی زایینی — مەکەی پیرۆز</span></div>
+          <div class="fact-row"><span class="fact-label" id="fl-wafat">کۆچی دوایی</span><span class="fact-value">٦٣٢ی زایینی — مەدینەی منەوەرە</span></div>
+          <div class="fact-row"><span class="fact-label" id="fl-tribe">باوک</span><span class="fact-value">عەبدولموتەڵیب</span></div>
+          <div class="fact-row"><span class="fact-label" id="fl-mother">دایک</span><span class="fact-value">ئامینەی کچی وەهب</span></div>
+          <div class="fact-row"><span class="fact-label" id="fl-clan">هۆز</span><span class="fact-value">قورەیش — بەنی هاشم</span></div>
+          <div class="fact-row"><span class="fact-label" id="fl-wife1">ژنی یەکەم</span><span class="fact-value">حەزرەتی خەدیجە (ڕەزای خوای لێبێت)</span></div>
+          <div class="fact-row"><span class="fact-label" id="fl-prophethood">پێغەمبەرایەتی</span><span class="fact-value">لە تەمەنی ٤٠ ساڵیدا</span></div>
+          <div class="fact-row"><span class="fact-label" id="fl-hijra">کۆچکردن بۆ مەدینە</span><span class="fact-value">٦٢٢ی زایینی</span></div>
+        </div>
+      </div>
+      <div class="prophet-bio">
+        <h3 id="pb-early">🌟 ساڵەکانی سەرەتای ژیانی</h3>
+        <p id="pb-early-text">حەزرەتی محەمەد ﷺ لە ساڵی ٥٧١ی زایینی لە شاری مەکەی پیرۆز لەدایکبوو. باوکی پێش لەدایکبوونی کۆچی دوایی کردبوو، دایکیشی لە تەمەنی شەش ساڵیدا کۆچی دوایی کرد. سەرەتا باپیرەی "عەبدولموتەڵیب" و دوای مردنی ئەویش، مامی "ئەبوتالیب" سەرپەرشتیی کرد و بەخێویکرد. لە گەنجیدا بە "ئەمین" ناسرا بوو، کە بە واتای "دەستپاک و جێگای متمانە" دێت.</p>
+
+        <h3 id="pb-youth">گەنجی و ژیانی پێش پێغەمبەرایەتی</h3>
+        <p id="pb-youth-text">لە گەنجیدا کەسێکی لێهاتوو و سەرکەوتوو بوو لە کارەکانیدا و خەریکی بازرگانی بوو. لە تەمەنی ٢٥ ساڵیدا هاوسەرگیریی لەگەڵ حەزرەتی خەدیجە (ڕەزای خوای لێبێت) کرد، کە خانمە بازرگانێکی دەوڵەمەند و ناودار بوو. حەزرەتی خەدیجە پشتیوانێکی زۆر گەورەی پێغەمبەر ﷺ بوو لە کاتی ناخۆشی و ناڕەحەتییەکاندا، و یەکەمین ئافرەتیش بوو کە باوەڕی پێهێنا و موسڵمان بوو.</p>
+
+        <h3 id="pb-revelation">📖 دەستپێکی وەحی</h3>
+        <p id="pb-revelation-text">لە ساڵی ٦١٠ی زایینیدا، کاتێک تەمەنی گەیشتە ٤٠ ساڵ، لە ئەشکەوتی حێرا لەسەر چیای نوور (جبل النور)، فریشتەی جوبرەئیل (سەلامی لێبێت) هاتە لای و یەکەمین ئایەتەکانی قورئانی پیرۆزی بۆ دابەزاند کە دەیفەرموو: «اقْرَأْ بِاسْمِ رَبِّکَ الَّذِی خَلَقَ». ئەمەش بووە سەرەتای ڕاگەیاندنی پێغەمبەرایەتییەکەی.</p>
+
+        <h3 id="pb-hijra">🌙 کۆچکردن بۆ مەدینە</h3>
+        <p id="pb-hijra-text">لە ساڵی ٦٢٢ی زایینیدا، پاش ئازار و چەوساندنەوەیەکی زۆری قورەیشییەکان، پێغەمبەر ﷺ لەگەڵ هاوەڵانیدا کۆچیان کرد بۆ مەدینەی منەوەرە. ئەم کۆچە مێژووییە بە "هیجرەت" ناسراوە و بووە سەرەتای ساڵنامەی کۆچیی ئیسلامی. پێغەمبەر ﷺ لە مەدینەدا یەکەمین دەوڵەتی ئیسلامیی دامەزراند.</p>
+
+        <h3 id="pb-victory">🕋 ڕزگارکردنی مەکە (فەتحی مەکە)</h3>
+        <p id="pb-victory-text">لە ساڵی ٦٣٠ی زایینیدا، پێغەمبەر ﷺ لەگەڵ سوپایەکی ١٠ هەزار کەسی لە موسڵمانان چووە ناو شاری مەکەوە و فەتحی کرد. بەپێچەوانەی پێشبینیی دوژمنانەوە، پێغەمبەر ﷺ لێخۆشبوونی گشتیی بۆ هەموو ئەو کەسانە دەرکرد کە پێشتر شەڕیان دژی ئیسلام کردبوو. ئەم بەخشندەیی و لێخۆشبوونە گەورەیە، بە یەکێک لە بەرزترین و جوانترین نموونەکانی لێبوردەیی لە مێژووی مرۆڤایەتیدا دادەنرێت.</p>
+
+        <h3 id="pb-farewell">🕊️ وتاری ماڵاوایی (خوتبەی الوداع)</h3>
+        <p id="pb-farewell-text">لە ساڵی ٦٣٢ی زایینیدا، پێغەمبەر ﷺ وتاری ماڵاوایی پێشکەش بە موسڵمانان کرد کە تێیدا فەرمووی: «موسڵمانان برای یەکترین، و نابێت دەستدرێژی بکرێتە سەر ماف و دارایی هیچ کەسێک.» چەند مانگێک دوای ئەم وتارە، هەر لە ساڵی ٦٣٢ی زایینیدا و لە تەمەنی ٦٣ ساڵیدا، گەورەی مرۆڤایەتی کۆچی دوایی کرد و گەڕایەوە بۆ لای پەروەردگاری.</p>
+
+        <div class="info-box gold" id="prophet-hadith-box">
+          <strong>فەرموودەی پیرۆز:</strong><br>
+          <span style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--emerald)">« إِنَّمَا بُعِثْتُ لأُتَمِّمَ مَكَارِمَ الأَخْلاقِ »</span><br>
+          <em id="hadith-translate">«من تەنها بۆ ئەوە ڕەوانەکراوم (نێردراوم) تا ڕەوشتە بەرز و جوانەکان تەواو بکەم.»</em><br>
+          <small style="color:var(--gold)">— ڕیوایەتی بەیهەقی و ئەحمەد</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HISTORY ===== -->
+<div class="section-full bg-cream" id="history">
+  <div class="section">
+    <div class="section-header reveal">
+      <div class="section-badge" id="badge-history">مێژووی ئیسلام</div>
+      <h2 class="section-title" id="title-history">سەرهەڵدانی <span>ئایینی ئیسلام</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-desc" id="desc-history">هەنگاوبەهەنگاو لەگەڵ مێژووی پیرۆزی ئیسلامدا</p>
+    </div>
+    <div class="timeline reveal" id="timeline-container"></div>
+  </div>
+</div>
+
+<!-- ===== QURAN ===== -->
+<div class="section-full" id="quran" style="background:linear-gradient(180deg,#f0f7f4,white)">
+  <div class="section">
+    <div class="section-header reveal">
+      <div class="section-badge" id="badge-quran">قورئانی پیرۆز</div>
+      <h2 class="section-title" id="title-quran">خوێندنەوەی <span>قورئانی کەریم</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-desc" id="desc-quran">کلیلک لەسەر ناوی سورەتەکەکە بکە بۆ خوێندنەوەی ئایەتەکانی</p>
+    </div>
+    <div class="quran-wrap reveal">
+      <div class="quran-content">
+        <div class="surah-selector" id="surah-selector"></div>
+        <div class="ayah-display">
+          <div class="ayah-arabic" id="ayah-arabic">اختر سورة للبدء</div>
+          <div class="ayah-translation" id="ayah-translation" style="display:none"></div>
+          <div class="ayah-ref" id="ayah-ref"></div>
+        </div>
+        <div class="ayah-controls">
+          <button class="ayah-btn" onclick="prevAyah()" id="btn-prev">◀ پێشووتر</button>
+          <span style="color:rgba(255,255,255,0.6);font-size:0.9rem;align-self:center" id="ayah-counter"></span>
+          <button class="ayah-btn" onclick="nextAyah()" id="btn-next">دواتر ▶</button>
+        </div>
+      </div>
+    </div>
+        <div class="info-box reveal" style="max-width: 700px; margin: 2rem auto 0;" id="quran-info-box">
+            <strong id="quran-info-title">دەربارەی قورئانی پیرۆز:</strong>
+        <span id="quran-info-text">قورئانی کەریم کتێبی پیرۆزی ئیسلامە و لە ١١٤ سورەت و ٦٢٣٦ ئایەت پێکهاتووە. لە مانگی ڕەمەزاندا دەستپێکی دابەزینی بووە و لە ماوەی ٢٣ ساڵدا تەواو بووە. ئەمڕۆ قورئان بە تەواوی و بێگۆڕانکاری ماوەتەوە، چونکە خودای گەورە خۆی بەڵێنی پاراستنی داوە لە هەر دەستکارییەک.</span>
+</div>
+  </div>
+</div>
+
+<!-- ===== PRAYER TIMES ===== -->
+<div class="section-full bg-cream" id="prayer">
+  <div class="section">
+    <div class="section-header reveal">
+      <div class="section-badge" id="badge-prayer">کاتی بانگ</div>
+      <h2 class="section-title" id="title-prayer">کاتی <span>نوێژ</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="prayer-hero reveal">
+      <div style="position:relative;z-index:1">
+        <div class="current-time" id="clock">٠٠:٠٠:٠٠</div>
+        <div class="current-date" id="current-date"></div>
+        <div class="city-search">
+          <input type="text" class="city-input" id="city-input" placeholder="ناوی شارەکەت بنووسە..." />
+          <button class="city-btn" onclick="searchCity()" id="btn-search">گەڕان</button>
+        </div>
+        <div id="city-display" style="margin-top:0.7rem;color:rgba(255,255,255,0.7);font-size:0.9rem"></div>
+      </div>
+    </div>
+    <div class="prayer-times-grid reveal" id="prayer-grid"></div>
+    <div class="info-box reveal" style="max-width:700px;margin:2rem auto 0" id="prayer-info-box">
+      <strong id="prayer-info-title">⚠️ تێبینی گرینگ:</strong>
+      <span id="prayer-info-text">کاتەکانی بانگ بەپێی شوێن و وەرز دەگۆڕێن. کاتەکانی نیشاندراو نزیکترینن بۆ شوێنی هەڵبژێردراو. بۆ دروستترین کات پێشنیار دەکرێت ئەپەکانی متمانەپێکراو یان مزگەوتی نزیکت بپرسیت.</span>
+    </div>
+    <div class="section-header reveal" style="margin-top:4rem">
+      <h3 class="section-title" style="font-size:1.8rem" id="title-salah"><span>پێنج نوێژە فەرزەکە</span></h3>
+    </div>
+    <div class="salah-steps reveal" id="salah-grid"></div>
+  </div>
+</div>
+
+<!-- ===== DHIKR ===== -->
+<div class="section-full bg-white" id="dhikr">
+  <div class="section">
+    <div class="section-header reveal">
+      <div class="section-badge" id="badge-dhikr">زیکر</div>
+      <h2 class="section-title" id="title-dhikr">زیکرەکانی <span>بەیانی و ئێوار</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="dhikr-tabs reveal">
+      <button class="dhikr-tab active" onclick="switchDhikr('morning')" id="tab-morning">🌅 زیکری بەیانی</button>
+      <button class="dhikr-tab" onclick="switchDhikr('evening')" id="tab-evening">🌙 زیکری ئێوار</button>
+      <button class="dhikr-tab" onclick="switchDhikr('sleep')" id="tab-sleep">😴 پێش خەوتن</button>
+    </div>
+    <div class="tab-content active" id="dhikr-morning">
+      <div class="dhikr-grid" id="morning-grid"></div>
+    </div>
+    <div class="tab-content" id="dhikr-evening">
+      <div class="dhikr-grid" id="evening-grid"></div>
+    </div>
+    <div class="tab-content" id="dhikr-sleep">
+      <div class="dhikr-grid" id="sleep-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HADITH ===== -->
+<div class="section-full bg-cream" id="hadith">
+  <div class="section">
+    <div class="section-header reveal">
+      <div class="section-badge" id="badge-hadith">فەرموودە</div>
+      <h2 class="section-title" id="title-hadith">فەرموودەکانی <span>پێغەمبەر ﷺ</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="hadith-grid reveal" id="hadith-grid"></div>
+  </div>
+</div>
+
+<!-- ===== BECOMING MUSLIM ===== -->
+<div class="section-full bg-white" id="become">
+  <div class="section">
+    <div class="section-header reveal">
+      <div class="section-badge" id="badge-become">بەرەو ئیسلام</div>
+      <h2 class="section-title" id="title-become">بەرەو <span>ئایینی پیرۆزی ئیسلام</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-desc" id="desc-become">ئیسلام ئایینی هەموو مرۆڤایەتییە؛ هیچ جۆرە جیاکاری و بەربەستێکی نەتەوەیی لە نێوان مرۆڤەکاندا ناهێڵێتەوە.</p>
+    </div>
+    <div class="shahada-box reveal">
+      <div style="font-size:0.9rem;color:rgba(255,255,255,0.7);margin-bottom:1rem" id="shahada-label">شەهادەت</div>
+      <div class="shahada-arabic">أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ</div>
+      <div class="shahada-arabic">وَأَشْهَدُ أَنَّ مُحَمَّداً رَّسُولُ اللّٰهِ</div>
+      <div class="shahada-trans" id="shahada-trans">شایەتی دەدەم کە هیچ پەرستراوێک نییە بە حەق جگە لە الله<br>و شایەتی دەدەم کە بەڕاستی محەمەد ﷺ نێردراوی خودایە.</div>
+    </div>
+    <div class="become-steps reveal" id="become-steps"></div>
+    <div class="info-box gold reveal" id="become-note">
+     <strong>🤝 پشتیوانی:</strong> 
+        <span id="become-note-text">ئەگەر پرسیارێکت هەیە یان دەتەوێت زانیاریی زیاتر بەدەستبهێنیت، باشترە لەگەڵ مامۆستایەکی ئاینیی متمانەپێکراو قسە بکەیت؛ بێگومان هەر موسڵمانێکی تریش دەتوانێت هاوکاریت بکات.</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">☪ ئایینی پیرۆزی ئیسلام</div>
+  
+  <div class="footer-verse">﴿ وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ ﴾</div>
+  
+  <div style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); margin-bottom: 1rem;">
+    الأنبياء: ١٠٧ — ئێمە تۆمان تەنها وەک ڕەحمەت و میهرەبانی بۆ سەرجەم جیهانیان ناردووە
+  </div>
+  
+  <div class="footer-note" id="footer-note" style="margin-bottom: 1.5rem;">
+    ⚠️ زانیارییەکانی ئەم وێبسایتە لە سەرچاوە ئیسلامییە متمانەپێکراوەکانەوە وەرگیراون — بەڵام پێش هەر بڕیارێک، پێشنیار دەکرێت لەگەڵ مامۆستایەکی ئایینی پشکنینی بۆ بکرێتەوە.<br>
+    کاتی بانگە نیشاندراوەکان نزیکەیین — بۆ دڵنیابوون لە دروستترین کات، لە مزگەوتی نزیک خۆتان بپرسن.
+  </div>
+
+  <div class="footer-copyright" style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.4); border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 1rem;">
+    © 2026 VOIDCORE & Mohamadsaman · All rights reserved
+  </div>
+</footer>
+
+<script>
+// ===========================
+// DATA
+// ===========================
+
+const SURAHS = [
+  { name: "الفاتحة", nameKu: "فاتیحە", ayahs: [
+    {ar:"بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ",en:"In the name of Allah, the Most Gracious, the Most Merciful",ku:"بە ناوی خودا، بەخشندەو میهرەبان"},
+    {ar:"الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",en:"All praise is due to Allah, Lord of all worlds",ku:"هەموو ستایش بۆ خوداوەندی هەموو جیهانان"},
+    {ar:"الرَّحْمٰنِ الرَّحِيمِ",en:"The Most Gracious, the Most Merciful",ku:"بەخشندەو میهرەبانی سەرەکی"},
+    {ar:"مَالِكِ يَوْمِ الدِّينِ",en:"Master of the Day of Judgment",ku:"خاوەنی ڕۆژی داوا"},
+    {ar:"إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",en:"You alone we worship, and You alone we ask for help",ku:"تەنها تۆی دەپارێزین و تەنها لەتۆوە یارمەتی دەخوازین"},
+    {ar:"اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ",en:"Guide us to the straight path",ku:"مان بخاتە سەر ڕێگای ڕاست"},
+    {ar:"صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ",en:"The path of those upon whom You have bestowed favor, not of those who have evoked anger or those who are astray",ku:"ڕێگای ئەوانەی کە نیعمەتت دایانەوە، نەی ئەوانەی تووڕی لیانبووتەوەو نەی ئەوانەی گیراون"}
+  ]},
+  { name: "الإخلاص", nameKu: "ئیخلاس", ayahs: [
+    {ar:"قُلْ هُوَ اللهُ أَحَدٌ",en:"Say: He is Allah, the One",ku:"بڵێ: ئەو خوداوەندی یەکتایە"},
+    {ar:"اللهُ الصَّمَدُ",en:"Allah, the Eternal Refuge",ku:"خوداوەند بێنیازو هەمیشەییەو"},
+    {ar:"لَمْ يَلِدْ وَلَمْ يُولَدْ",en:"He neither begets nor is born",ku:"نەیزاو و نەزاوتراوە"},
+    {ar:"وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ",en:"Nor is there to Him any equivalent",ku:"و هیچکەس هاوتای نییە لەگەڵیدا"}
+  ]},
+  { name: "الفلق", nameKu: "فەلەق", ayahs: [
+    {ar:"قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",en:"Say: I seek refuge in the Lord of daybreak",ku:"بڵێ: پەناهم لەلای خوداوەندی بەیانەوە"},
+    {ar:"مِن شَرِّ مَا خَلَقَ",en:"From the evil of that which He created",ku:"لە خراپایی ئەوەی ئافراندووی"},
+    {ar:"وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ",en:"And from the evil of darkness when it settles",ku:"و لە خراپایی شەودا کاتێک تاریک دەبێت"},
+    {ar:"وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ",en:"And from the evil of those who blow on knots",ku:"و لە خراپایی ئەوانەی دەفوتن لەسەر گرێکان"},
+    {ar:"وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ",en:"And from the evil of an envier when he envies",ku:"و لە خراپایی چاوسەختگر کاتێک چاوسەختی دەکات"}
+  ]},
+  { name: "الناس", nameKu: "ناس", ayahs: [
+    {ar:"قُلْ أَعُوذُ بِرَبِّ النَّاسِ",en:"Say: I seek refuge in the Lord of mankind",ku:"بڵێ: پەناهم لەلای خوداوەندی مرۆڤایەتی"},
+    {ar:"مَلِكِ النَّاسِ",en:"The Sovereign of mankind",ku:"پاشای مرۆڤایەتی"},
+    {ar:"إِلَٰهِ النَّاسِ",en:"The God of mankind",ku:"خودای مرۆڤایەتی"},
+    {ar:"مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ",en:"From the evil of the retreating whisperer",ku:"لە خراپایی وەسوەسەی شەیتانی شارەوە"},
+    {ar:"الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ",en:"Who whispers in the breasts of mankind",ku:"ئەوەی وەسوەسە دەدات لە سینەی مرۆڤاندا"},
+    {ar:"مِنَ الْجِنَّةِ وَالنَّاسِ",en:"From among the jinn and mankind",ku:"لە جن و مرۆڤاندا"}
+  ]},
+  { name: "الكوثر", nameKu: "کەوسەر", ayahs: [
+    {ar:"إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ",en:"Indeed, We have granted you al-Kawthar",ku:"ئێمە کەوسەرمان پێداو"},
+    {ar:"فَصَلِّ لِرَبِّكَ وَانْحَرْ",en:"So pray to your Lord and sacrifice",ku:"جا نوێژ بکەرەوە بۆ خوداوەندت و قوربانی بکە"},
+    {ar:"إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ",en:"Indeed, your enemy is the one cut off",ku:"دوژمنت ئەوەی کە بڕاوەتەوەو"}
+  ]},
+  { name: "النصر", nameKu: "نەسر", ayahs: [
+    {ar:"إِذَا جَاءَ نَصْرُ اللهِ وَالْفَتْحُ",en:"When the victory of Allah has come and the conquest",ku:"کاتێک یارمەتی خودا و کردنەوە هاتن"},
+    {ar:"وَرَأَيْتَ النَّاسَ يَدْخُلُونَ فِي دِينِ اللهِ أَفْوَاجًا",en:"And you see the people entering into the religion of Allah in multitudes",ku:"و بینیت مرۆڤەکان دەچنە دینی خودا کۆمەڵە کۆمەڵە"},
+    {ar:"فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُ ۚ إِنَّهُ كَانَ تَوَّابًا",en:"Then exalt your Lord with praise and ask forgiveness of Him. Indeed, He is ever Accepting of repentance",ku:"جا تەسبیح بکەرەوە بە ستایشی خوداوەندت و لێخۆشبوونی دابخوازە. ئەو هەمیشە پەشیمانیپەزیرەو"}
+  ]},
+  { name: "البقرة ١-٥", nameKu: "بەقەرە (١-٥)", ayahs: [
+    {ar:"الٓمٓ",en:"Alif Lam Meem",ku:"ئەلیف لام میم"},
+    {ar:"ذَٰلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًى لِّلْمُتَّقِينَ",en:"This is the Book about which there is no doubt, a guidance for those conscious of Allah",ku:"ئەم کتێبەیە کە هیچ گومانێک تێدا نییە، ڕێنمایییە بۆ ئەوانەی خودا لەبیر دەکەن"},
+    {ar:"الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ وَيُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنفِقُونَ",en:"Who believe in the unseen, establish prayer, and spend out of what We have provided for them",ku:"ئەوانەی بە نادیار باوەڕ دەهێنن و نوێژ دادەنێن و لە ئەوەیمان ڕیزقیان داوە دەبەخشن"},
+    {ar:"وَالَّذِينَ يُؤْمِنُونَ بِمَا أُنزِلَ إِلَيْكَ وَمَا أُنزِلَ مِن قَبْلِكَ وَبِالْآخِرَةِ هُمْ يُوقِنُونَ",en:"And who believe in what has been revealed to you and what was revealed before you, and of the Hereafter they are certain",ku:"و ئەوانەی بە ئەوەی دابەزاندراوە بۆ لات باوەڕ دەهێنن و بە ئەوەی پێش لادابەزاندراوەو بە ئاخرەتیش باوەڕی تەواویان هەیە"},
+    {ar:"أُولَٰئِكَ عَلَىٰ هُدًى مِّن رَّبِّهِمْ ۖ وَأُولَٰئِكَ هُمُ الْمُفْلِحُونَ",en:"Those are upon guidance from their Lord, and it is those who are the successful",ku:"ئەوانە لەسەر ڕێنمایییەکی خوداوەندیانن و ئەوانەش ئەوانەی بەخت پێدەبن"}
+  ]},
+  { name: "آية الكرسي", nameKu: "ئایەتول کورسی", ayahs: [
+    {ar:"اللهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",en:"Allah - there is no deity except Him, the Ever-Living, the Self-Sustaining",ku:"خودا — هیچ خودایەک نییە مەگەر ئەو، ژیاو هەمیشەماون"},
+    {ar:"لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ",en:"Neither drowsiness overtakes Him nor sleep",ku:"نە خەوتووی و نە خەوی دەگرێتەوە"},
+    {ar:"لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ",en:"To Him belongs whatever is in the heavens and whatever is on the earth",ku:"هەرچی لە ئاسمانان و زەویدایە خاوەنی ئەوی"},
+    {ar:"مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ",en:"Who is it that can intercede with Him except by His permission?",ku:"کێ ئەوەیە کە ناوبژێری لەلای بکات مەگەر بە ڕووخساتییەوە؟"},
+    {ar:"يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ",en:"He knows what is before them and what will be after them",ku:"دەزانێت ئەوچی پێشەوەیانە و ئەوچی لەدوایانەو"},
+    {ar:"وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ",en:"And they encompass not a thing of His knowledge except for what He wills",ku:"و ئەوانیش لەزانستی خودا هیچیان فێر نابێت مەگەر ئەوەی بیخوازێت"},
+    {ar:"وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ",en:"His Kursi extends over the heavens and the earth",ku:"کورسییەکەی ئاسمانان و زەوییە گرتووە"},
+    {ar:"وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ",en:"And their preservation tires Him not. And He is the Most High, the Most Great",ku:"پاراستنیان کلێشە نادات بەو. ئەو بەرزو گەورەیە"}
+  ]}
+];
+
+const TIMELINE_DATA = [
+  {year:"٥٧١ زایینی",title:"لەدایکبوونی پێغەمبەر ﷺ",text:"حەزرەتی محەمەد ﷺ لە شاری مەکەی پیرۆز لەدایکبوو، ئەم ساڵەش لە مێژوودا بە «ساڵی فیل» (عام الفیل) ناسراوە."},
+  {year:"٦١٠ زایینی",title:"دەستپێکی وەحی",text:"لە ئەشکەوتی حێرا فریشتەی جوبرەئیل (سەلامی لێبێت) دەرکەوت و یەکەم وشەی قورئانی هێنا: «اقْرَأْ»، ئەمەش بووە سەرەتای پێغەمبەرایەتی."},
+  {year:"٦١٣ زایینی",title:"بانگەوازی ئاشکرا",text:"پێغەمبەر ﷺ دەستی بە بانگەوازی ئاشکرای ئیسلام کرد، لەو پێناوەشدا موسڵمانان ئازار و چەوساندنەوەیەکی زۆریان چەشت."},
+  {year:"٦١٩ زایینی",title:"ساڵی خەم (عام الحزن)",text:"حەزرەتی خەدیجە (هاوسەری) و ئەبوتالیب (مامی) کۆچی دواییان کرد، ئەم ساڵە بەهۆی قورسییەکەیەوە بە ساڵی خەم ناونرا."},
+  {year:"٦٢١ زایینی",title:"ئیسرا و مێراج",text:"پێغەمبەر ﷺ لە شەوێکی پڕ فەزڵدا لە مەکەوە بۆ بەیتولمەقدیس و دواتریش بۆ ئاسمانەکان بەرزکرایەوە."},
+  {year:"٦٢٢ زایینی",title:"هیجرەت بۆ مەدینە",text:"کۆچکردنی مێژوویی پێغەمبەر ﷺ و هاوەڵانی بۆ مەدینەی منەوەرە، کە بووە سەرەتای ساڵنامەی کۆچیی ئیسلامی."},
+  {year:"٦٢٤ زایینی",title:"شەڕی بەدر",text:"یەکەمین غەزای گەورەی ئیسلام بوو؛ سوپایەکی قورەیش کە نزیکەی ١٠٠٠ سەرباز بوون بەرامبەر ٣١٣ موسڵمان، و موسڵمانان سەرکەوتنێکی گەورەیان بەدەستهێنا."},
+  {year:"٦٢٧ زایینی",title:"شەڕی خەندەق",text:"قورەیش و هاوپەیمانەکانیان بە ١٠ هەزار سەربازەوە هێرشیان کردە سەر مەدینە. موسڵمانان بە لێدانی خەندەقێک لە دەوری شارەکە، پلانەکەیان پووچەڵ کردنەوە و دوژمن شکا."},
+  {year:"٦٣٠ زایینی",title:"ڕزگارکردنی مەکە (فەتحی مەکە)",text:"پێغەمبەر ﷺ لەگەڵ سوپایەکی ١٠ هەزار کەسی لە موسڵمانان بە ئاشتی و ئارامی چووە ناو مەکەوە و لێخۆشبوونی گشتیی بۆ هەمووان ڕاگەیاند."},
+  {year:"٦٣٢ زایینی",title:"کۆچی دواینی پێغەمبەر ﷺ",text:"لە تەمەنی ٦٣ ساڵیدا، پێغەمبەر ﷺ کۆچی دوایی کرد، لە کاتێکدا پەیامی ئیسلام لە تەواوی نیمچەدوورگەی عەرەبیدا جێگیر ببوو."},
+  {year:"٦٣٢-٦٦١ زایینی",title:"خەلافەتی ڕاشیدین",text:"سەردەمی چوار خەلیفەکەی ئیسلام (ئەبوبەکر، عومەر، عوسمان، و عەلی) کە تێیدا دەسەڵاتی ئیسلامی زۆر فراوان بوو و دادپەروەری چەسپا."},
+  {year:"٦٦١-٧٥٠ زایینی",title:"دەوڵەتی ئومەوی",text:"دامەزراندنی دەوڵەتی ئومەوی کە سنووری دەسەڵاتی گەیشتە  (ئیسپانیا)، وڵاتی فارس، و سنوورەکانی هیندستان."},
+  {year:"٧٥٠-١٢٥٨ زایینی",title:"دەوڵەتی عەباسی (سەردەمی زێڕین)",text:"شاری بەغدا بووە پایتەخت و ناوەندی زانست، فەلسەفە، پزیشکی و ماتماتیک. کتێبخانە گەورەکان و وەرگێڕانی زانستەکان لەم سەردەمەدا گەیشتنە لووتکە."}
+];
+
+const DHIKR = {
+  morning: [
+    {ar:"أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ",trl:"Asbahna wa asbahal mulku lillah walhamdu lillah",ku:"بەیانمان بوو و پاشایەتی بۆ خوداوەندەو ستایش بۆ خوداو",count:"١ جار"},
+    {ar:"اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ",trl:"Allahuma bika asbahna...",ku:"خودایە بەلام بەیانمان بوو، بەلامت ئێوارمان بوو، بەلامت دەژیین و دەمرین و بۆ لات دەگەڕینەوە",count:"١ جار"},
+    {ar:"سُبْحَانَ اللهِ وَبِحَمْدِهِ",trl:"Subhanallahi wa bihamdih",ku:"پیرۆزی خوداوەند و ستایشی ئەو",count:"١٠٠ جار"},
+    {ar:"أَعُوذُ بِاللهِ مِنَ الشَّيْطَانِ الرَّجِيمِ",trl:"A'udhu billahi minash-shaytanir-rajim",ku:"پەناه دەبەم بە خوداوەند لە شەیتانی ڕەکاندراو",count:"١ جار"},
+    {ar:"آيَةُ الْكُرْسِيِّ",trl:"Ayatul Kursi",ku:"ئایەتول کورسی — البقرة ٢٥٥",count:"١ جار"},
+    {ar:"بِسْمِ اللهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ",trl:"Bismillahil-ladhi la yadurru...",ku:"بە ناوی خودایەی کە هیچیان زیانی نادات لەگەڵ ناوییدا",count:"٣ جار"},
+    {ar:"رَضِيتُ بِاللهِ رَبًّا وَبِالإِسْلامِ دِيناً وَبِمُحَمَّدٍ نَبِيًّا",trl:"Radhitu billahi rabba...",ku:"ڕازیم بە خودا وەک خوداوەند، بە ئیسلام وەک دین، بە محەمەد ﷺ وەک پێغەمبەر",count:"٣ جار"}
+  ],
+  evening: [
+    {ar:"أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ",trl:"Amsayna wa amsal mulku lillah",ku:"ئێوارمان بوو و پاشایەتی بۆ خوداوەندەو ستایش بۆ خودا",count:"١ جار"},
+    {ar:"اللَّهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا وَبِكَ نَحْيَا",trl:"Allahumma bika amsayna...",ku:"خودایە بەلامت ئێوارمان بوو و بەلامت بەیانمان دەبێت",count:"١ جار"},
+    {ar:"سُبْحَانَ اللهِ وَبِحَمْدِهِ",trl:"Subhanallahi wa bihamdih",ku:"پیرۆزی خوداوەند و ستایشی ئەو",count:"١٠٠ جار"},
+    {ar:"اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي",trl:"Allahumma 'afini fi badani...",ku:"خودایە تەندروستیم بدە لە جەستەمدا، لە گوێمدا، لە چاوەکانمدا",count:"٣ جار"},
+    {ar:"اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ",trl:"Allahumma inni as'aluk al-'afwa...",ku:"خودایە من لێخۆشبوون و تەندروستی لێت دەخوازم",count:"٣ جار"},
+    {ar:"أَعُوذُ بِكَلِمَاتِ اللهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",trl:"A'udhu bikalimatillahit-tammati...",ku:"پەناه دەبەم بە کەلیماتی تەواوی خودا لە خراپایی ئەوەی ئافراندووی",count:"٣ جار"}
+  ],
+  sleep: [
+    {ar:"بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",trl:"Bismika Allahumma amutu wa ahya",ku:"بە ناوت ئەی خودا دەمرم و دەژیم",count:"١ جار"},
+    {ar:"الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَكَفَانَا",trl:"Alhamdulillahil-ladhi at'amana...",ku:"ستایش بۆ خودا ئەوەی خواردنمان دا و خوواردنمان دا و بەسمان کرد",count:"١ جار"},
+    {ar:"سُبْحَانَ اللَّهِ (٣٣)، الْحَمْدُ لِلَّهِ (٣٣)، اللهُ أَكْبَرُ (٣٤)",trl:"Subhanallah 33 / Alhamdulillah 33 / Allahu Akbar 34",ku:"تەسبیح ٣٣ جار — ستایش ٣٣ جار — تەکبیر ٣٤ جار",count:"١٠٠ جار کۆیان"},
+    {ar:"آيَةُ الْكُرْسِيِّ",trl:"Ayatul Kursi before sleeping",ku:"خوێندنەوەی ئایەتول کورسی پێش خەوتن",count:"١ جار"},
+    {ar:"قُلْ هُوَ اللهُ أَحَدٌ + الْفَلَقُ + النَّاسُ",trl:"Al-Ikhlas + Al-Falaq + An-Nas",ku:"سورەتی ئیخلاس، فەلەق، ناس خوێندنەوە و فوت کردن بۆ دوو دەست",count:"٣ جار هەر یەک"}
+  ]
+};
+
+const HADITHS = [
+  {ar:"إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ",ku:"«کردەوەکان تەنها بەپێی نییەتەکانیانن.»",en:"Actions are judged by intentions",src:"بوخاری و موسلیم"},
+  {ar:"الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ",ku:"«موسڵمان ئەو کەسەیە کە موسڵمانانی تر لە زمان و دەستی پارێزراو بن.»",en:"A Muslim is one from whose tongue and hands Muslims are safe",src:"بوخاری"},
+  {ar:"لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ",ku:"«هیچ کام لە ئێوە باوەڕی (تەواو) نابێت، تاوەکو ئەوەی بۆ خۆی پێی خۆشە و دەیکاتە ئاوات، بۆ براکەشی پێی خۆش بێت.»",en:"None of you believes until he loves for his brother what he loves for himself",src:"بوخاری و موسلیم"},
+  {ar:"طَلَبُ الْعِلْمِ فَرِيضَةٌ عَلَى كُلِّ مُسْلِمٍ",ku:"«گەڕان و داواکردنی زانست، فەرزە لەسەر هەموو موسڵمانێک.»",en:"Seeking knowledge is an obligation upon every Muslim",src:"ئیبنی ماجە"},
+  {ar:"إِنَّ اللهَ رَفِيقٌ يُحِبُّ الرِّفْقَ",ku:"«بەڕاستی خودا نەرمونیانە و نەرمونیانی و میهرەبانیی خۆش دەوێت.»",en:"Indeed Allah is gentle and loves gentleness",src:"موسلیم"},
+  {ar:"مَنْ كَانَ يُؤْمِنُ بِاللهِ وَالْيَوْمِ الآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ",ku:"«هەرکەسێک باوەڕی بە خودا و ڕۆژی دوایین هەیە، با قسەی چاک بکات یان بێدەنگ بێت.»",en:"Whoever believes in Allah and the Last Day should speak good or remain silent",src:"بوخاری و موسلیم"}
+];
+
+const SALAH_DATA = [
+  {ar:"صَلاةُ الفَجْر",ku:"نوێژی بەیانی",time:"لە سپێدەی بەیانی تا پێش دەرکەوتنی خۆر.",rakaat:"٢ ڕکات",icon:"🌅"},
+  {ar:"صَلاةُ الظُّهْر",ku:"نوێژی نیوەڕۆ",time:"لە لادانی خۆر لە ناوەڕاستی ئاسمانەوە تا کاتی هاتنی نوێژی عەسڕ.",rakaat:"٤ ڕکات",icon:"☀️"},
+  {ar:"صَلاةُ العَصْر",ku:"نوێژی عەسر",time:"لە دوای نەمانی کاتی نیوەڕۆ (کاتێک سێبەری هەر شتێک دەبێتە هاوشێوەی خۆی) تا پێش زەردبوونی خۆر و ئاوابوونی.",rakaat:"٤ ڕکات",icon:"🌤️"},
+  {ar:"صَلاةُ المَغْرِب",ku:"نوێژی ئێوارە",time:"لە دوای خۆرئاوابوونی تەواوەتییەوە تا ونبوونی شەفەقی سوور",rakaat:"٣ ڕکات",icon:"🌇"},
+  {ar:"صَلاةُ العِشَاء",ku:"نوێژی خووتن",time:"لە کاتی ونبوونی شەفەقی سوورەوە تا نیوەی شەو",rakaat:"٤ ڕکات",icon:"🌙"}
+];
+
+const BECOME_STEPS = [
+  {title:"تەوحید",text:"یەکەمین هەنگاو، باوەڕهێنانە بەوەی کە خودا تاک و تەنیایە، هیچ هاوبەش و شەریکی نییە، و ئەو دروستکەری سەرجەم گەردوون و جیهانەکانە."},
+  {title:"شەهادەت",text:"شایەتومانەکەت بە ئیرادە، دڵنیایی و ئیمانی تەواوەوە بڵێ، چونکە ئەمە مرۆڤ دەکاتە موسڵمان. دەتوانیت بە تەنیا لە نێوان خۆت و خودادا بیڵێیت، یان لە پێش گەواهیدەرێک یان مامۆستایەکی ئاینییدا."},
+  {title:"فێربوونی نوێژ",text:"نوێژکردن فەرزی سەرەکیی سەر شانی هەر موسڵمانێکە. فێربوونی چۆنیەتیی دەستنوێژگرتن، جووڵەکان و کاتەکانی پێنج نوێژە فەرزەکە زۆر پێویستە."},
+  {title:"فێربوونی قورئان",text:"دەستکردن بە فێربوون و لەبەرکردنی سورەتە کورتەکانی قورئانی پیرۆز (وەک سورەتی فاتیحە و ئیخلاس) لەگەڵ زیکرە سەرەتاییەکان، پاشان بەرەبەرە فێربوونی بەشەکانی تری قورئان."},
+  {title:"تێکەڵبوون بە کۆمەڵگەی ئیسلامی",text:"سەردانی مزگەوتی نزیک ماڵتان یان ناوەندە ئیسلامییەکان بکە؛ لەوێ موسڵمانانی تر دەبنە برا و خوشکی ڕاستەقینەت و هاوکاریت دەکەن."},
+  {title:"فێربوونی بنەماکانی ئایین",text:"بە هێواشی و لەسەرخۆیی زانیاریی ئایینیی زیاتر فێرببە. تێگەیشتن و پێشکەوتنی قۆناغ بە قۆناغ، زۆر باشترە لە پەلەکردن و ماندووکردنی بێسوودی خۆت."}
+];
+
+// ===========================
+// RENDERING
+// ===========================
+
+function renderTimeline() {
+  const c = document.getElementById('timeline-container');
+  c.innerHTML = TIMELINE_DATA.map((t,i)=>`
+    <div class="timeline-item" style="transition-delay:${i*0.08}s">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">${t.year}</div>
+      <div class="timeline-content">
+        <h4>${t.title}</h4>
+        <p>${t.text}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderSurahSelector() {
+  const s = document.getElementById('surah-selector');
+  s.innerHTML = SURAHS.map((su,i)=>`
+    <button class="surah-btn ${i===0?'active':''}" onclick="selectSurah(${i})">${su.name} — ${su.nameKu}</button>
+  `).join('');
+}
+
+let curSurah = 0, curAyah = 0;
+
+function selectSurah(idx) {
+  curSurah = idx; curAyah = 0;
+  document.querySelectorAll('.surah-btn').forEach((b,i)=>b.classList.toggle('active',i===idx));
+  showAyah();
+}
+
+function showAyah() {
+  const s = SURAHS[curSurah], a = s.ayahs[curAyah];
+  document.getElementById('ayah-arabic').textContent = a.ar;
+  const tr = document.getElementById('ayah-translation');
+  tr.textContent = a.ku;
+  tr.style.display = 'block';
+  document.getElementById('ayah-ref').textContent = `${s.name} — آية ${curAyah+1}`;
+  document.getElementById('ayah-counter').textContent = `${curAyah+1} / ${s.ayahs.length}`;
+}
+
+function nextAyah() {
+  if(curAyah < SURAHS[curSurah].ayahs.length-1) { curAyah++; showAyah(); }
+  else if(curSurah < SURAHS.length-1) { curSurah++; curAyah=0; document.querySelectorAll('.surah-btn').forEach((b,i)=>b.classList.toggle('active',i===curSurah)); showAyah(); }
+}
+
+function prevAyah() {
+  if(curAyah > 0) { curAyah--; showAyah(); }
+  else if(curSurah > 0) { curSurah--; curAyah=SURAHS[curSurah].ayahs.length-1; document.querySelectorAll('.surah-btn').forEach((b,i)=>b.classList.toggle('active',i===curSurah)); showAyah(); }
+}
+
+function renderDhikr() {
+  ['morning','evening','sleep'].forEach(type=>{
+    const g = document.getElementById(`${type}-grid`);
+    g.innerHTML = DHIKR[type].map(d=>`
+      <div class="dhikr-card">
+        <div class="dhikr-arabic">${d.ar}</div>
+        <div class="dhikr-transliteration">${d.trl}</div>
+        <div class="dhikr-meaning">${d.ku}</div>
+        <div style="text-align:center"><span class="dhikr-count">× ${d.count}</span></div>
+      </div>
+    `).join('');
+  });
+}
+
+function switchDhikr(type) {
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.dhikr-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(`dhikr-${type}`).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function renderHadiths() {
+  const g = document.getElementById('hadith-grid');
+  g.innerHTML = HADITHS.map(h=>`
+    <div class="hadith-card">
+      <div class="hadith-arabic">${h.ar}</div>
+      <div class="hadith-translation">${h.ku}</div>
+      <div class="hadith-source">📚 ${h.src}</div>
+    </div>
+  `).join('');
+}
+
+function renderBecomeSteps() {
+  const c = document.getElementById('become-steps');
+  c.innerHTML = BECOME_STEPS.map((s,i)=>`
+    <div class="step-card">
+      <div class="step-num-wrap"><div class="step-num">${i+1}</div></div>
+      <div class="step-content">
+        <h4>${s.title}</h4>
+        <p>${s.text}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderSalah() {
+  const g = document.getElementById('salah-grid');
+  g.innerHTML = SALAH_DATA.map(s=>`
+    <div class="salah-card">
+      <div style="font-size:2rem">${s.icon}</div>
+      <div class="salah-name-ar">${s.ar}</div>
+      <div class="salah-name-ku">${s.ku}</div>
+      <div class="salah-rakaat">${s.rakaat}</div>
+      <div class="salah-time">${s.time}</div>
+    </div>
+  `).join('');
+}
+
+// ===========================
+// PRAYER TIMES
+// ===========================
+
+function getPrayerTimes(lat, lng, date) {
+  const toRad = d => d * Math.PI / 180;
+  const toDeg = r => r * 180 / Math.PI;
+  const julianDate = (y,m,d) => {
+    if(m<=2){y--;m+=12;}
+    const A=Math.floor(y/100), B=2-A+Math.floor(A/4);
+    return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+B-1524.5;
+  };
+  const JD = julianDate(date.getFullYear(), date.getMonth()+1, date.getDate());
+  const D = JD - 2451545.0;
+  const g = (357.529 + 0.98560028*D) % 360;
+  const q = (280.459 + 0.98564736*D) % 360;
+  const L = (q + 1.915*Math.sin(toRad(g)) + 0.020*Math.sin(toRad(2*g))) % 360;
+  const e = 23.439 - 0.00000036*D;
+  const RA = toDeg(Math.atan2(Math.cos(toRad(e))*Math.sin(toRad(L)), Math.cos(toRad(L)))) / 15;
+  const dec = toDeg(Math.asin(Math.sin(toRad(e))*Math.sin(toRad(L))));
+  const EqT = q/15 - ((RA % 24 + 24) % 24);
+  const Zt = 12 - EqT - lng/15;
+  const angle = (a) => {
+    const cosH = (Math.sin(toRad(-a)) - Math.sin(toRad(lat))*Math.sin(toRad(dec))) / (Math.cos(toRad(lat))*Math.cos(toRad(dec)));
+    if(Math.abs(cosH)>1) return null;
+    return toDeg(Math.acos(cosH)) / 15;
+  };
+  const fmt = (t) => {
+    if(t==null) return "--:--";
+    let h = Math.floor(t) % 24, m = Math.floor((t % 1) * 60);
+    return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+  };
+  const shadow = 1;
+  const Asr_angle = toDeg(Math.atan(1/(shadow+Math.tan(toRad(Math.abs(lat-dec))))));
+  const A_fajr = angle(18);
+  const A_dhuhr = angle(0.833);
+  const A_asr = angle(90 - Asr_angle);
+  const A_isha = angle(17);
+  return [
+    {name:"الفجر", ku:"نوێژی بەیانی", icon:"🌅", time: fmt(Zt - (A_fajr||0))},
+    {name:"الظهر", ku:"نوێژی نیوەڕۆ", icon:"☀️", time: fmt(Zt)},
+    {name:"العصر", ku:"نوێژی دیکە", icon:"🌤️", time: fmt(Zt + (A_asr||0))},
+    {name:"المغرب", ku:"نوێژی ئێوارە", icon:"🌇", time: fmt(Zt + (A_dhuhr||0))},
+    {name:"العشاء", ku:"نوێژی خووتن", icon:"🌙", time: fmt(Zt + (A_isha||0))}
+  ];
+}
+
+let currentCity = {lat:35.5653, lng:45.4336, name:"سلێمانی، عێراق"};
+
+function renderPrayerGrid(times) {
+  const now = new Date();
+  const curMins = now.getHours()*60 + now.getMinutes();
+  let nextIdx = -1;
+  for(let i=0;i<times.length;i++){
+    const [h,m]=times[i].time.split(':').map(Number);
+    if(h*60+m > curMins){nextIdx=i;break;}
+  }
+  const g = document.getElementById('prayer-grid');
+  g.innerHTML = times.map((t,i)=>`
+    <div class="prayer-card ${i===nextIdx?'next-prayer':''}">
+      ${i===nextIdx?'<div class="prayer-badge">▶ دواتر</div>':''}
+      <div class="prayer-icon">${t.icon}</div>
+      <div class="prayer-name-ar">${t.name}</div>
+      <div class="prayer-name-ku">${t.ku}</div>
+      <div class="prayer-time">${t.time}</div>
+    </div>
+  `).join('');
+}
+
+function updatePrayerTimes() {
+  const times = getPrayerTimes(currentCity.lat, currentCity.lng, new Date());
+  renderPrayerGrid(times);
+  document.getElementById('city-display').textContent = '📍 ' + currentCity.name;
+}
+
+function searchCity() {
+  const q = document.getElementById('city-input').value.trim();
+  if(!q) return;
+  // Use nominatim geocoding
+  fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=1`)
+    .then(r=>r.json())
+    .then(data=>{
+      if(data && data.length>0) {
+        currentCity = {lat:parseFloat(data[0].lat), lng:parseFloat(data[0].lon), name: data[0].display_name.split(',').slice(0,2).join(', ')};
+        updatePrayerTimes();
+      } else {
+        document.getElementById('city-display').textContent = '❌ شارەکە نەدۆزرایەوە — تکایە ناوی ئینگلیزی بنووسە';
+      }
+    })
+    .catch(()=>{
+      document.getElementById('city-display').textContent = '⚠️ هەڵە ڕووداد — ئینتەرنیت بپشکنە';
+    });
+}
+
+// ===========================
+// CLOCK
+// ===========================
+
+function updateClock() {
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2,'0');
+  const m = String(now.getMinutes()).padStart(2,'0');
+  const s = String(now.getSeconds()).padStart(2,'0');
+  document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+  const days = ['یەکشەممە','دووشەممە','سێشەممە','چوارشەممە','پێنجشەممە','هەینی','شەممە'];
+  const months = ['کانوونی دووەم','شوبات','ئازار','نیسان','ئایار','حوزەیران','تەمووز','ئاب','ئەیلوول','تشرینی یەکەم','تشرینی دووەم','کانوونی یەکەم'];
+  document.getElementById('current-date').textContent = `${days[now.getDay()]} — ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+}
+
+// ===========================
+// LANGUAGE
+// ===========================
+
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+  document.documentElement.lang = lang === 'ku' ? 'ckb' : lang;
+  // Basic UI text switch
+  const texts = {
+    ku: {
+      navTitle:"دینی ئیسلام", p1:"پێنج ئەرکان", p2:"پێغەمبەر ﷺ", p3:"مێژوو", p4:"قورئان", p5:"کاتی بانگ", p6:"زیکر", p7:"بەرەو ئیسلام",
+      heroBt:"بەیانی ووتیتەوە", heroSub:"ئیسلام دینی ئاشتی و سڵامەتییەو",
+      scrollLabel:"دادە خوار"
+    },
+    ar: {
+      navTitle:"الإسلام", p1:"أركان الإسلام", p2:"النبي ﷺ", p3:"التاريخ", p4:"القرآن", p5:"مواقيت الصلاة", p6:"الأذكار", p7:"الإسلام للمبتدئين",
+      heroBt:"ابدأ القراءة", heroSub:"الإسلام دين السلام والرحمة للعالمين",
+      scrollLabel:"اسحب للأسفل"
+    },
+    en: {
+      navTitle:"Islam", p1:"Pillars", p2:"Prophet ﷺ", p3:"History", p4:"Quran", p5:"Prayer Times", p6:"Dhikr", p7:"Become Muslim",
+      heroBt:"Start Reading", heroSub:"Islam is the religion of peace, mercy, and guidance for all mankind",
+      scrollLabel:"Scroll Down"
+    }
+  };
+  const t = texts[lang];
+  document.getElementById('nav-title').textContent = t.navTitle;
+  document.getElementById('nav-pillars').textContent = t.p1;
+  document.getElementById('nav-prophet').textContent = t.p2;
+  document.getElementById('nav-history').textContent = t.p3;
+  document.getElementById('nav-quran').textContent = t.p4;
+  document.getElementById('nav-prayer').textContent = t.p5;
+  document.getElementById('nav-dhikr').textContent = t.p6;
+  document.getElementById('nav-become').textContent = t.p7;
+  document.getElementById('hero-btn1').textContent = t.heroBt;
+  document.getElementById('scroll-label').textContent = t.scrollLabel;
+  if(lang==='ar') document.getElementById('hero-bismillah-trans').textContent = "بسم الله الرحمن الرحيم";
+  if(lang==='en') document.getElementById('hero-bismillah-trans').textContent = "In the name of Allah, the Most Gracious, the Most Merciful";
+  if(lang==='ku') document.getElementById('hero-bismillah-trans').textContent = "بە ناوی خوای بەخشندە و میهرەبان";
+}
+
+// ===========================
+// SCROLL REVEAL
+// ===========================
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.classList.add('visible');
+      if(e.target.classList.contains('timeline-item')) e.target.classList.add('visible');
+    }
+  });
+}, {threshold:0.08});
+
+// ===========================
+// INIT
+// ===========================
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderTimeline();
+  renderSurahSelector();
+  selectSurah(0);
+  renderDhikr();
+  renderHadiths();
+  renderBecomeSteps();
+  renderSalah();
+
+  // Geolocation
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(pos=>{
+      currentCity.lat = pos.coords.latitude;
+      currentCity.lng = pos.coords.longitude;
+      currentCity.name = "شوێنی ئێستات";
+      updatePrayerTimes();
+    }, ()=> updatePrayerTimes());
+  } else {
+    updatePrayerTimes();
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+  setInterval(updatePrayerTimes, 60000);
+
+  document.querySelectorAll('.reveal, .timeline-item').forEach(el=>observer.observe(el));
+
+  // Enter key for city search
+  document.getElementById('city-input').addEventListener('keydown', e=>{ if(e.key==='Enter') searchCity(); });
+});
+</script>
+</body>
+</html>
